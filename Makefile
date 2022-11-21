@@ -1,11 +1,11 @@
 # You can pick a different compiler here
 # and also choose different options
 
-CC = gcc -pthread -g -Wall 
+CC = gcc -O3 -pthread -g -Wall 
 AR = ar
 
 
-all: libfilter.a p_band_scan pthread-ex parallel-sum-ex
+all: libfilter.a band_scan pthread-ex parallel-sum-ex
 
 
 libfilter.a : filter.o signal.o timing.o
