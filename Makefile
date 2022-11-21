@@ -1,11 +1,11 @@
 # You can pick a different compiler here
 # and also choose different options
 
-CC = gcc -g -Wall
+CC = gcc -pthread -g -Wall 
 AR = ar
 
 
-all: libfilter.a band_scan pthread-ex parallel-sum-ex
+all: libfilter.a p_band_scan pthread-ex parallel-sum-ex
 
 
 libfilter.a : filter.o signal.o timing.o
@@ -21,8 +21,8 @@ timing.o : timing.c timing.h
 	$(CC) -c timing.c
 
 
-band_scan: band_scan.c filter.h signal.h timing.h libfilter.a
-	$(CC) band_scan.c -L. -lfilter -lm -o band_scan
+band_scan: p_band_scan.c filter.h signal.h timing.h libfilter.a
+	$(CC) p_band_scan.c -L. -lfilter -lm -o p_band_scan
 
 #
 # Your rule for p_band_scan will look like the 
@@ -34,7 +34,7 @@ band_scan: band_scan.c filter.h signal.h timing.h libfilter.a
 #
 
 clean-filter: 
-	-rm filter.o signal.o timing.o libfilter.a  band_scan 2>/dev/null || true
+	-rm filter.o signal.o timing.o libfilter.a  p_band_scan 2>/dev/null || true
 
 .PHONY: clean-filter
 
